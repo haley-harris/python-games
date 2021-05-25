@@ -2,6 +2,7 @@
 
 import random 
 
+
 def computer_select():
 
     choice = ['rock', 'paper', 'scissors']
@@ -14,26 +15,46 @@ def player_select():
 
     # prompt user for choice - converts input to lowercase
     player_input = input('Choose rock, paper, or scissors: ').lower()
-    return player_input
+    
+    # if user puts in incorrect choice or ints
+    if (player_input not in ['rock', 'paper', 'scissors']):
+        print('Not a choice, try again')
+        player_select()
+    else:
+        return player_input
+
+def select_rounds():
+
+    # validate user input is an integer with try except statement
+    while True:
+        try:
+            # prompt user for number of rounds
+            rounds = int(input('Number of rounds: '))
+        except ValueError:
+            print('Please enter a number')
+            continue
+        else:
+            return rounds
+            break
 
 
-def play_game(rounds):
+def play_game():
 
     # intialize score
     player_score = 0
     computer_score = 0
 
-    rounds = int(rounds)
-
+    # set number of rounds
+    rounds = select_rounds()
+    
     for i in range(rounds):
         
         # stores player and computer choices
         player_choice = player_select()
         computer_choice = computer_select()
 
-        # if user puts in incorrect choice or numbers
-        if (player_choice not in ['rock', 'paper', 'scissors']):
-            print('Not a choice, try again')
+        # print computer's choice to screen
+        print(f'\nComputer\'s choice: {computer_choice}\n')
 
         # game logic
         if (player_choice == 'rock' and computer_choice == 'scissors'):
@@ -51,6 +72,9 @@ def play_game(rounds):
             print('Computer\'s point')
             computer_score +=1
 
-    print(f'''Your score: {player_score}\nComputer score: {computer_score}''')
+    print(f'''\nYour score: {player_score}\nComputer score: {computer_score}''')
 
-play_game(5)
+
+if __name__ == '__main__':
+
+    play_game()
