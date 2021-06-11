@@ -3,21 +3,19 @@ import sys
 
 
 def print_intro():
-
     # print game instructions
     print('*' * 42)
     print('Can you guess the number in just 7 tries?\n * hint: min + max / 2')
     print('*' * 42 + '\n')
 
-def print_numbers(min, max):
 
+def print_numbers(min, max):
     # print list of numbers to screen for visualization
     num_list = list(range(min, max + 1))
     print(num_list)
 
 
 def play_game():
-
     # print game intro/instructions
     print_intro()
 
@@ -27,12 +25,11 @@ def play_game():
     # set max number of rounds 
     # for an arr size of 100 -> 2^7 = 128 = 7 guesses max
     round_count = 7
+    # store target number
+    target = random.randrange(1, 100)
 
     # print initial list of numbers
     print_numbers(min, max)
-
-    # store target number
-    target = random.randrange(1, 100)
 
     while round_count != 0:
         # have user guess number
